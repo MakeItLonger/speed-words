@@ -13,12 +13,22 @@ const sentence = quotes[Math.floor(Math.random() * quotes.length)];
 const words = sentence.split(' ');
 
 export const Typing = () => {
+  const curIndexRef = React.useRef(0);
   const [sec, setSec] = React.useState(20);
   const [currentWord, setCurrentWord] = React.useState(words[0]);
   const [inputValue, setInputValue] = React.useState('');
   const [wordsCount, setWordsCount] = React.useState(0);
 
   const onChangeInput = (e) => {
+    const { value } = e.target;
+
+    if (currentWord === value) {
+      curIndexRef.current += 1;
+      setCurrentWord(words[curIndexRef.current]);
+      setInputValue('');
+      return;
+    }
+
     setInputValue(e.target.value);
   };
 
