@@ -15,13 +15,24 @@ const words = sentence.split(' ');
 export const Typing = () => {
   const [sec, setSec] = React.useState(20);
   const [currentWord, setCurrentWord] = React.useState(words[0]);
+  const [inputValue, setInputValue] = React.useState('');
   const [wordsCount, setWordsCount] = React.useState(0);
+
+  const onChangeInput = (e) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <div class="flex typing">
       <p class="typing__enter-word">Введите слово:</p>
       <h3 class="typing__word">{currentWord}</h3>
-      <input className="typing__input" type="text" autoFocus={true} />
+      <input
+        value={inputValue}
+        onChange={onChangeInput}
+        className="typing__input"
+        type="text"
+        autoFocus={true}
+      />
       <div class="typing__progress">
         <div class="typing__timer">
           <p>Осталось времени:</p>
