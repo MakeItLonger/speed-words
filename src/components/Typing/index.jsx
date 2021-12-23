@@ -26,10 +26,11 @@ export const Typing = () => {
       curIndexRef.current += 1;
       setCurrentWord(words[curIndexRef.current]);
       setInputValue('');
+      setWordsCount((prev) => prev + 1);
       return;
     }
 
-    setInputValue(e.target.value);
+    setInputValue(value.trim());
   };
 
   return (
