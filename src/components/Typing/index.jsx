@@ -40,6 +40,20 @@ export const Typing = () => {
     setInputValue(value.trim());
   };
 
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setSec((prev) => {
+        const value = prev - 1;
+
+        if (!value) {
+          clearInterval(timer);
+        }
+
+        return value;
+      });
+    }, 1000);
+  }, []);
+
   return (
     <div class="flex typing">
       <p class="typing__enter-word">Введите слово:</p>
