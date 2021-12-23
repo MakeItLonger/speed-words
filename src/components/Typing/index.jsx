@@ -18,6 +18,7 @@ export const Typing = () => {
   const [currentWord, setCurrentWord] = React.useState(words[0]);
   const [inputValue, setInputValue] = React.useState('');
   const [wordsCount, setWordsCount] = React.useState(0);
+  const [isError, setIsError] = React.useState(false);
 
   const onChangeInput = (e) => {
     const { value } = e.target;
@@ -30,6 +31,12 @@ export const Typing = () => {
       return;
     }
 
+    if (!new RegExp(`^${value}`).test(currentWord)) {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+
     setInputValue(value.trim());
   };
 
@@ -40,7 +47,7 @@ export const Typing = () => {
       <input
         value={inputValue}
         onChange={onChangeInput}
-        className="typing__input"
+        className={`typing__input ${isError ? 'error' : ''}`}
         type="text"
         autoFocus={true}
       />
